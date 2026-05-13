@@ -1,21 +1,15 @@
 {
-  "name": "web-app-template",
-  "version": "0.0.1",
-  "description": "A template for a web app using Node.js, Express and Handlebars",
+  "name": "tricount-app",
+  "version": "0.1.0",
+  "description": "Tricount-App - Studienprojekt Webtechnologien)",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^8.0.3",
-    "winston": "^3.3.3"
-  },
-  "repository": {
-    "url": "https://github.com/OTHRegensburgWebDevKIDS/web-app-template-1"
-  },
-  "license": "MIT",
-  "keywords": [
-    "node",
-    "express"
-  ]
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "pg": "^8.11.3"
+  }
 }

@@ -1,0 +1,31 @@
+<h1 class="mb-4">Registrierte User</h1>
+
+{{#if error}}
+  <div class="alert alert-danger">{{error}}</div>
+{{/if}}
+
+{{#if users.length}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>E-Mail</th>
+        <th>Registriert am</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.created_at}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p class="text-muted">
+    Noch keine User registriert.
+    <a href="/signup">Jetzt registrieren</a>
+  </p>
+{{/if}}
