@@ -1,0 +1,27 @@
+<h1 class="mb-4">Gruppen</h1>
+
+{{#if groups.length}}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Erstellt von</th>
+            <th>Erstellt am</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each groups}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.created_at}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p class="text-muted">
+        Noch keine Gruppen vorhanden.
+        <a href="/signup">Jetzt registrieren</a>
+    </p>
+{{/if}}

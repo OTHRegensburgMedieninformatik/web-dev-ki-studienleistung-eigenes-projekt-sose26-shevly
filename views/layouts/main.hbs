@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}} | Tricount</title>
-
- 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: transparent;
+        }
+        .navbar-brand {
+            color: #000000;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .btn-outline-white {
+            color: #000000;
+            border-color: #000000;
+        }
+        .btn-outline-white:hover {
+            background-color: #000000;
+            color: #fcf9f9;
+        }
+    </style>
 </head>
 <body>
 
-  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="/">Tricount</a>
-      <div class="d-flex">
-        <a class="btn btn-outline-light btn-sm me-2" href="/login">Login</a>
-        <a class="btn btn-outline-light btn-sm" href="/signup">Registrieren</a>
-      </div>
+<nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="/">finance</a>
+    <div class="ms-auto d-flex gap-2">
+        <a href="/signup" class="btn btn-outline-white">Registrieren</a>
+        <a href="/login" class="btn btn-white bg-white text-primary fw-bold">Login</a>
     </div>
-  </nav>
+</nav>
 
-  
-  <main class="container py-4">
+<div class="container mt-4 text-white">
     {{{body}}}
-  </main>
+</div>
 
 </body>
 </html>

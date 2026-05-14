@@ -27,8 +27,19 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Willkommen' });
+app.get('/', async (req, res) => {
+  try {
+    const result = await db.query(
+      `SELECT groups.id, groups.name, groups.created_at, users.email
+       FROM groups
+       JOIN users ON groups.owner_id = users.id
+       ORDER BY groups.created_at DESC`
+    );
+    res.render('index', { title: 'Willkommen', groups: result.rows });
+  } catch (err) {
+    console.error('Fehler beim Laden der Gruppen:', err.message);
+    res.render('index', { title: 'Willkommen', groups: [] });
+  }
 });
 
 app.get('/signup', (req, res) => {
