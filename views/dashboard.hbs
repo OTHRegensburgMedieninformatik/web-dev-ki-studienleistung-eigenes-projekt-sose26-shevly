@@ -5,7 +5,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Erstellt von</th>
             <th>Erstellt am</th>
         </tr>
         </thead>
@@ -13,15 +12,19 @@
         {{#each groups}}
             <tr>
                 <td>{{this.name}}</td>
-                <td>{{this.email}}</td>
                 <td>{{this.created_at}}</td>
             </tr>
         {{/each}}
         </tbody>
     </table>
 {{else}}
-    <p class="text-muted">
-        Noch keine Gruppen vorhanden.
-        <a href="/signup">Jetzt registrieren</a>
-    </p>
+    <p class="text-muted">Noch keine Gruppen vorhanden.</p>
 {{/if}}
+
+<form method="post" action="/groups/create">
+    <div class="mb-3">
+        <label for="name" class="form-label text-black">Gruppenname</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="z.B. Urlaub 2026" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Gruppe erstellen</button>
+</form>
