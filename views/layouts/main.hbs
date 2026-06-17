@@ -26,15 +26,30 @@
             background-color: #000000;
             color: #fcf9f9;
         }
+        .group-card {
+            background: #f8f9fa;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .group-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1) !important;
+        }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg px-4 py-3">
-    <a class="navbar-brand" href="/">finance</a>
+    <a class="navbar-brand" href="{{#if loggedIn}}/dashboard{{else}}/{{/if}}">finance</a>
     <div class="ms-auto d-flex gap-2">
-        <a href="/signup" class="btn btn-outline-white">Registrieren</a>
-        <a href="/login" class="btn btn-white bg-white text-primary fw-bold">Login</a>
+        {{#if loggedIn}}
+            <a href="/profile" class="btn btn-outline-white">Mein Profil</a>
+            <form method="post" action="/logout" style="margin:0">
+                <button type="submit" class="btn btn-white bg-white text-primary fw-bold">Abmelden</button>
+            </form>
+        {{else}}
+            <a href="/signup" class="btn btn-outline-white">Registrieren</a>
+            <a href="/login" class="btn btn-white bg-white text-primary fw-bold">Login</a>
+        {{/if}}
     </div>
 </nav>
 
@@ -42,5 +57,6 @@
     {{{body}}}
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

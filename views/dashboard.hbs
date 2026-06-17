@@ -1,30 +1,74 @@
-<h1 class="mb-4">Gruppen</h1>
+<div class="text-black">
 
-{{#if groups.length}}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Erstellt am</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each groups}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.created_at}}</td>
-            </tr>
-        {{/each}}
-        </tbody>
-    </table>
-{{else}}
-    <p class="text-muted">Noch keine Gruppen vorhanden.</p>
-{{/if}}
+  <div class="mb-5">
+    <p class="text-muted mb-1" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase;">Willkommen</p>
+    <h2 class="fw-bold mb-0">{{userName}}</h2>
+  </div>
 
-<form method="post" action="/groups/create">
-    <div class="mb-3">
-        <label for="name" class="form-label text-black">Gruppenname</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="z.B. Urlaub 2026" required>
+  <p class="text-muted fw-semibold mb-3">Deine Gruppen</p>
+
+  <div class="row g-3">
+    {{#each groups}}
+    <div class="col-6 col-md-4 col-lg-3">
+      <a href="/groups/{{this.id}}" class="text-decoration-none">
+        <div class="card group-card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h5 class="card-title text-dark fw-semibold mb-1">{{this.name}}</h5>
+            <p class="card-text text-muted small mb-0">Erstellt von {{this.owner_name}} am {{this.created_at}}</p>
+          </div>
+        </div>
+      </a>
     </div>
-    <button type="submit" class="btn btn-primary">Gruppe erstellen</button>
-</form>
+    {{/each}}
+
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="card group-card h-100 border-0 shadow-sm"
+           data-bs-toggle="modal" data-bs-target="#addGroupModal"
+           style="cursor:pointer; background:#efefef;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center text-muted p-4">
+          <span style="font-size:2.5rem; line-height:1; font-weight:200;">+</span>
+          <span class="mt-2 small text-center">Gruppe erstellen<br>oder beitreten</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="addGroupModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold">Gruppe hinzufügen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-3">
+
+        <h6 class="fw-semibold mb-2">Neue Gruppe erstellen</h6>
+        <form method="post" action="/groups/create">
+          <div class="input-group mb-4">
+            <input type="text" class="form-control" name="name" placeholder="z.B. Urlaub 2026" required>
+            <button type="submit" class="btn btn-dark">Erstellen</button>
+          </div>
+        </form>
+
+        <hr class="my-2">
+
+        <h6 class="fw-semibold mb-1 mt-3">Gruppe beitreten</h6>
+        <p class="text-muted small mb-2">Gruppen-ID eingeben, <code>/groups/ID</code> </p>
+        <div class="input-group">
+          <input type="text" class="form-control" id="joinGroupId" placeholder="z.B. 3">
+          <button class="btn btn-dark" onclick="joinGroup()">Beitreten</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function joinGroup() {
+  const id = document.getElementById('joinGroupId').value.trim();
+  if (id) window.location.href = '/groups/' + id;
+}
+</script>

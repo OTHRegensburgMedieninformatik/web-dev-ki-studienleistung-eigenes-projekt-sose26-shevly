@@ -2,7 +2,7 @@
   <div class="col-md-6 col-lg-5">
 
     <h1 class="mb-4">Login</h1>
-      <p class="text-black fw-bold text-center fs-4">Bitte geben Sie E- Mail und Passwort ein</p>
+      <p class="text-black fw-bold text-center fs-4">Bitte anmelden</p>
 
     {{#if error}}
       <div class="alert alert-danger">{{error}}</div>
@@ -11,12 +11,12 @@
     <form method="post" action="/login">
 
       <div class="mb-3">
-        <label for="email" class="form-label">E-Mail</label>
-        <input type="email"
+        <label for="identifier" class="form-label">Benutzername oder E-Mail Adresse</label>
+        <input type="text"
                class="form-control"
-               id="email"
-               name="email"
-               placeholder="E- Mail Adresse"
+               id="identifier"
+               name="identifier"
+               placeholder="Benutzername oder E-Mail Adresse"
                required>
       </div>
 

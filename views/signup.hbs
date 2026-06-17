@@ -2,9 +2,8 @@
   <div class="col-md-6 col-lg-5">
 
     <h1 class="mb-4">Registrieren</h1>
-      <p class="text-black fw-bold text-center fs-4">Bitte geben Sie E- Mail und Passwort ein</p>
+      <p class="text-black fw-bold text-center fs-4">Bitte alle Felder ausfüllen</p>
 
-    {{! Falls Fehler}}
     {{#if error}}
       <div class="alert alert-danger">{{error}}</div>
     {{/if}}
@@ -12,12 +11,22 @@
     <form method="post" action="/signup">
 
       <div class="mb-3">
-        <label for="email" class="form-label">E-Mail</label>
+        <label for="username" class="form-label">Benutzername</label>
+        <input type="text"
+               class="form-control"
+               id="username"
+               name="username"
+               placeholder="Benutzername"
+               required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">E-Mail Adresse</label>
         <input type="email"
                class="form-control"
                id="email"
                name="email"
-               placeholder="E- Mail Adresse"
+               placeholder="E-Mail Adresse"
                required>
       </div>
 

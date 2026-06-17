@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 const { Pool } = require('pg');
 
 //env

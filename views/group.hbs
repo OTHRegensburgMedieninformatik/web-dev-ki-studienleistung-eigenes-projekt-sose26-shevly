@@ -1,0 +1,43 @@
+<div class="text-black">
+    <h1 class="mb-1">{{group.name}}</h1>
+    <p class="text-muted mb-4">Erstellt am {{group.created_at}}</p>
+
+    {{#unless isMember}}
+    <div class="alert alert-info">
+        Du bist noch kein Mitglied dieser Gruppe.
+        <form method="post" action="/groups/{{group.id}}/join" class="mt-2">
+            <button type="submit" class="btn btn-primary">Gruppe beitreten</button>
+        </form>
+    </div>
+    {{/unless}}
+
+    {{#if isMember}}
+    <h5>Mitglieder</h5>
+    <ul class="list-group mb-4">
+        {{#each members}}
+            <li class="list-group-item">{{this.display_name}}</li>
+        {{/each}}
+    </ul>
+
+    {{#if isOwner}}
+    <div class="mb-4">
+        <h5>Einladungslink</h5>
+        <p class="text-muted">Teile diesen Link, damit andere der Gruppe beitreten können:</p>
+        <div class="input-group">
+            <input type="text" class="form-control" id="inviteLink" value="/groups/{{group.id}}" readonly>
+            <button class="btn btn-outline-dark" onclick="copyLink()">Kopieren</button>
+        </div>
+    </div>
+    {{/if}}
+
+    <a href="/dashboard" class="btn btn-outline-dark">Zurück zum Dashboard</a>
+    {{/if}}
+</div>
+
+<script>
+function copyLink() {
+    const input = document.getElementById('inviteLink');
+    input.select();
+    navigator.clipboard.writeText(window.location.origin + input.value);
+}
+</script>
